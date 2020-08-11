@@ -46,7 +46,8 @@ export default function Input() {
   const changeInput = evt => {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
-    const inputValue = evt.target;
+    const value = evt.target.value;
+    setInputValue(value);
     /* STEP 4 */
 
   };
@@ -58,7 +59,7 @@ export default function Input() {
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: inputValue > 10 ? 'crimson' : 'royalblue'
+    color: inputValue.length > 10 ? 'crimson' : 'royalblue'
   };
 
   return (
@@ -66,7 +67,7 @@ export default function Input() {
       <h2>Input</h2>
       <div style={style}>{inputValue.toUpperCase()}</div> {/* STEP 3 */}
       <div>
-        <input type='text' onChange={changeInput} /> {/* STEP 6 */}
+        <input type='text' onChange={changeInput} value={inputValue} /> {/* STEP 6 */}
         <button onClick={reset}>Reset</button>
       </div>
     </div>
