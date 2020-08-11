@@ -10,6 +10,9 @@ the things that change in this widget? Give it some thought before continuing re
 Yup, a single slice of state is enough! In it we'll keep track of the value of the input.
 Whether the text shows royalblue or crimson can be derived from the length of the value of the input.
 
+crimson over 10
+royalblue minus 10
+
 STEP 0:
   Study the component below, and import the state hook.
 
@@ -34,32 +37,34 @@ STEP 6:
   We need to add an extra prop to the input element like so: value={inputValue}
 */
 
-import React from 'react'; /* STEP 0 */
+import React, {useState} from 'react'; /* STEP 0 */
 
 export default function Input() {
   /* STEP 1 */
+  const [ inputValue, setInputValue ] = useState('');
 
   const changeInput = evt => {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
-    const { value } = evt.target;
-
+    const inputValue = evt.target;
     /* STEP 4 */
+
   };
   const reset = () => {
     /* STEP 5 */
+    return setInputValue('')
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: inputValue > 10 ? 'crimson' : 'royalblue'
   };
 
   return (
     <div className='widget-input container'>
       <h2>Input</h2>
-      <div style={style}></div> {/* STEP 3 */}
+      <div style={style}>{inputValue.toUpperCase()}</div> {/* STEP 3 */}
       <div>
         <input type='text' onChange={changeInput} /> {/* STEP 6 */}
         <button onClick={reset}>Reset</button>
